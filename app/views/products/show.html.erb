@@ -1,9 +1,20 @@
-<h1><%= @product.title %></h1>
+<h1><%= @product.name %></h1>
+<% if @product.on_sale == true %>
+  <h2>ON SALE!!!</h2>
+<% end %>
+<% if @product.new == true %>
+  <h2>NEW!</h2>
+<% end %>
 <ul>
-  <li>Name: <%= @product.title %></li>
+  <li>Name: <%= @product.name %></li>
   <li>Category: <%= @product.category.name %></li>
   <li>Details: <%= @product.details %></li>
-  <li>Price: <%= @product.price %></li>
-  <li>On Sale: <%= @product.on_sale %></li>
-  <li>New: <%= @product.new %></li>
+  <li>
+    <% if @product.on_sale == false %>
+      Price:
+    <% else %>
+      Sale Price:
+    <% end %>
+    <%= @product.price %>
+  </li>
 </ul>
