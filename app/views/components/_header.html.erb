@@ -1,0 +1,50 @@
+<header class="container has-background-grey-light">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+    <div class="is-flex is-vcentered">
+        <h1 class="title is-1 pr-3">ExoLit Co.</h1>
+        <h3 class="title is-3">Login</h3>
+        <form action="/search" class="is-flex">
+            <input type="text" placeholder="Product Name" name="product_name">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <div class="navbar has-background-grey-lighter">
+        <div class="navbar-item">
+            <h3 class="title is-3"><%= link_to 'Bestsellers', bestsellers_path %></h3>
+        </div>
+        <div class="navbar-item">
+            <h3 class="title is-3"><%= link_to 'Cleansers', cleansers_path %></h3>
+        </div>
+        <div class="navbar-item">
+            <h3 class="title is-3"><%= link_to 'Moisturizers', moisturizers_path %></h3>
+        </div>
+        <div class="navbar-item">
+            <h3 class="title is-3"><%= link_to 'Masks', masks_path %></h3>
+        </div>
+        <div class="navbar-item">
+            <h3 class="title is-3"><%= link_to 'Eye Care', eye_care_path %></h3>
+        </div>
+        <div class="navbar-item">
+            <h3 class="title is-3"><%= link_to 'Face Mists', face_mists_path %></h3>
+        </div>
+        <div class="navbar-item">
+            <h3 class="title is-3"><%= link_to 'Makeup Removers', makeup_removers_path %></h3>
+        </div>
+        <div class="navbar-item">
+            <h3 class="title is-3"><%= link_to 'Sunscreen', sunscreen_path %></h3>
+        </div>
+        <div class="navbar-item">
+            <h3 class="title is-3"><%= link_to 'Skin Tools', skin_tools_path %></h3>
+        </div>
+        <div class="navbar-item">
+            <h3 class="title is-3"><%= link_to 'Treatments & Serums', treatments_serums_path %></h3>
+        </div>
+        <div class="navbar-item">
+            <h3 class="title is-3"><%= link_to 'Sets', sets_path %></h3>
+        </div>
+        <div class="navbar-item">
+            <h3 class="title is-3"><%= link_to 'Mini Sized', mini_sized_path %></h3>
+        </div>
+    </div>
+</header>
