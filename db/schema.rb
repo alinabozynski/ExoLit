@@ -15,19 +15,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_28_201912) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "product_id"
+    t.index ["product_id"], name: "index_categories_on_product_id"
   end
 
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.text "details"
     t.string "price"
-    t.string "on_sale"
-    t.string "new"
+    t.boolean "on_sale"
+    t.boolean "new"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "category_id"
     t.index ["category_id"], name: "index_products_on_category_id"
   end
 
-  add_foreign_key "products", "categories"
 end
