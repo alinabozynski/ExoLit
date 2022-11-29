@@ -13,12 +13,13 @@
  *= require_tree .
  *= require_self
  */
-a:hover{
-  background-image: linear-gradient(to bottom right, #bce8c1, #d894eb)
+a:hover {
+  background-image: linear-gradient(to bottom right, #ace2ff, #d894eb)
 }
 
 header {
-  padding: 2px 2px 0px 2px;
+  padding: 3px;
+  margin-bottom: 1%;
   background-color: #f5c17e;
 }
 
@@ -36,6 +37,15 @@ header {
       margin: 0px;
     }
 
+  header > div:first-of-type h1 {
+    text-shadow: 0px 0px 15px #202020;
+  }
+
+  .header-item > span {
+    color: #f5c17e;
+    text-shadow: 0px 0px 15px #000, 0px 0px 15px #3c3c3c;
+  }
+
   .header-item:first-of-type > a, .navbar-item > h6 > a, .navbar-item > a, .category a, .product a, .footer a {
     color: #000;
   }
@@ -50,8 +60,18 @@ header {
       background-color: #515050;
     }
 
-    .navbar, .navbar-item {
+    .navbar {
       background-color: #f2dfc5;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-content: center;
+    }
+
+    .navbar-item {
+      background-color: #f2dfc5;
+      margin: 2px auto;
+      height: fit-content;
     }
 
 section {
@@ -76,16 +96,22 @@ section {
       float: right;
     }
 
-      .category:hover {
-        background-image: linear-gradient(to bottom right, #bce8c1, #d894eb)
+      .navbar-item:hover {
+        background-image: linear-gradient(to bottom right, #ace2ff, #d894eb);
       }
 
+      .category:hover {
+        border: 2px solid #000;
+        background-image: linear-gradient(to bottom right, #ace2ff, #d894eb);
+      }
+
+footer {
+  padding: 4px;
+  margin-top: 1%;
+  background-color: #f5c17e;
+}
+
   .footer {
-    max-height: 10px;
     flex-wrap: wrap;
     margin-bottom: 3%;
   }
-
-    .footer-item {
-      background-color: #f5c17e;
-    }

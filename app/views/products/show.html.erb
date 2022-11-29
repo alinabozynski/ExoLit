@@ -1,4 +1,4 @@
-<%= render :partial => 'components/header' %>
+<%= render 'components/header', page: @product.category.name %>
 <div class="container">
   <section>
     <p class="category">
@@ -26,7 +26,7 @@
     <% end %>
       <p>
         <b>
-          <%= @product.on_sale == true ? 'Sale Price: ' : ''%>
+          <%= @product.on_sale == true ? 'Sale Price: ' : '' %>
           <%= @product.price %>
         </b>
       </p>

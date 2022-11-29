@@ -2,7 +2,7 @@
 <div class="container">
 	<h2 class="title is-2">All Products</h2>
 </div>
-<section class="is-flex">
+<section class="all is-flex">
 		<% @products.shuffle().each do |product| %>
 			<div class="product">
 				<h4 class="title is-4"><%= product.new == true ? 'NEW! ' : '' %></h4>
