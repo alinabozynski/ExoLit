@@ -1,19 +1,14 @@
-<table>
-	<tr>
-		<th>Name</th>
-		<th>Details</th>
-		<th>Price</th>
-		<th>On Sale?</th>
-    <th>New?</th>
-	</tr>
-
-<% @products.each do |product| %>
-	<tr>
-		<td><%= link_to product.name, product_path(product.id) %></td>
-		<td><%= product.details %></td>
-	  <td><%= product.price %></td>
-		<td><%= product.on_sale %></td>
-    <td><%= product.new %></td>
-	</tr>
-<% end %>
-</table>
+<section class="products is-flex">
+		<% @products.each do |product| %>
+			<div class="product">
+				<h4 class="title is-4"><%= product.new == true ? 'NEW! ' : '' %></h4>
+				<h4 class="title is-4"><a><%= link_to product.name, product_path(product.id) %></a></h4>
+				<h5 class="title is-5"><%= product.on_sale == true ? 'ON SALE!' : '' %></h5>
+				<p><%= product.price %></p>
+				<p><%= truncate(product.details, :length => 100) %></p>
+			</div>
+		<% end %>
+</section>
+<div class="container">
+  <%= paginate @products %>
+</div>

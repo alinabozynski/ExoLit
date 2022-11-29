@@ -1,24 +1,31 @@
 <%= render :partial => 'components/header' %>
-<h1>All Products</h1>
-<table>
-	<tr>
-		<th>Name</th>
-		<th>Category</th>
-		<th>Details</th>
-		<th>Price</th>
-		<th>On Sale?</th>
-    <th>New?</th>
-	</tr>
-
-<% @products.each do |product| %>
-	<tr>
-		<td><%= link_to product.name, product_path(product.id) %></td>
-		<td><%= product.category.name %></td>
-		<td><%= product.details %></td>
-	  <td><%= product.price %></td>
-		<td><%= product.on_sale %></td>
-    <td><%= product.new %></td>
-	</tr>
-<% end %>
-</table>
+<div class="container">
+	<h2 class="title is-2">All Products</h2>
+</div>
+<section class="is-flex">
+		<% @products.shuffle().each do |product| %>
+			<div class="product">
+				<h4 class="title is-4"><%= product.new == true ? 'NEW! ' : '' %></h4>
+				<span class="category">
+					<%= link_to product.category.name,
+						product.category.name == 'Eye Care' ? eye_care_path :
+						product.category.name == 'Face Mist' ? face_mists_path :
+						product.category.name == 'Makeup Remover' ? makeup_removers_path :
+						product.category.name == 'Mini Size' ? mini_sized_path :
+						product.category.name == 'Skin Tool' ? skin_tools_path :
+						product.category.name == 'Sunscreen' ? sunscreen_path :
+						product.category.name == 'Treatment & Serum' ? treatments_serums_path :
+						product.category.name.downcase.concat('s')
+					%>
+				</span>
+				<h4 class="title is-4"><%= link_to product.name, product_path(product.id) %></h4>
+				<h5 class="title is-5"><%= product.on_sale == true ? 'ON SALE!' : '' %></h5>
+				<p><b><%= product.price %></b></p>
+				<p><%= truncate(product.details, :length => 100) %></p>
+			</div>
+		<% end %>
+</section>
+<div class="container">
+  <%= paginate @products %>
+</div>
 <%= render :partial => 'components/footer' %>

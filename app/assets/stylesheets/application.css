@@ -13,3 +13,79 @@
  *= require_tree .
  *= require_self
  */
+a:hover{
+  background-image: linear-gradient(to bottom right, #bce8c1, #d894eb)
+}
+
+header {
+  padding: 2px 2px 0px 2px;
+  background-color: #f5c17e;
+}
+
+  header .search > input {
+    padding: 10px;
+    width: 500px;
+    margin-right: 5px;
+  }
+
+  .header-item, .navbar-item, .footer-item {
+    margin: auto;
+  }
+
+    header > div > h3:last-of-type {
+      margin: 0px;
+    }
+
+  .header-item:first-of-type > a, .navbar-item > h6 > a, .navbar-item > a, .category a, .product a, .footer a {
+    color: #000;
+  }
+
+  .header-item:first-of-type > a:hover {
+    border: 1.5px solid #fff;
+    border-radius: 0px 65px;
+  }
+
+    .cart-icon {
+      height: fit-content;
+      background-color: #515050;
+    }
+
+    .navbar, .navbar-item {
+      background-color: #f2dfc5;
+    }
+
+section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+  .product {
+    max-width: 18%;
+    border: 2px solid #515050;
+    box-sizing: content-box;
+    margin: 15px;
+    padding: 1%;
+  }
+
+    .category {
+      border: 2px solid #515050;
+      border-radius: 15px;
+      width: fit-content;
+      padding: 3px;
+      float: right;
+    }
+
+      .category:hover {
+        background-image: linear-gradient(to bottom right, #bce8c1, #d894eb)
+      }
+
+  .footer {
+    max-height: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 3%;
+  }
+
+    .footer-item {
+      background-color: #f5c17e;
+    }

@@ -1,20 +1,36 @@
-<h1><%= @product.name %></h1>
-<% if @product.on_sale == true %>
-  <h2>ON SALE!!!</h2>
-<% end %>
-<% if @product.new == true %>
-  <h2>NEW!</h2>
-<% end %>
-<ul>
-  <li>Name: <%= @product.name %></li>
-  <li>Category: <%= @product.category.name %></li>
-  <li>Details: <%= @product.details %></li>
-  <li>
-    <% if @product.on_sale == false %>
-      Price:
-    <% else %>
-      Sale Price:
+<%= render :partial => 'components/header' %>
+<div class="container">
+  <section>
+    <p class="category">
+      <a>
+        <%= link_to @product.category.name,
+          @product.category.name == 'Eye Care' ? eye_care_path :
+          @product.category.name == 'Face Mist' ? face_mists_path :
+          @product.category.name == 'Makeup Remover' ? makeup_removers_path :
+          @product.category.name == 'Mini Size' ? mini_sized_path :
+          @product.category.name == 'Skin Tool' ? skin_tools_path :
+          @product.category.name == 'Sunscreen' ? sunscreen_path :
+          @product.category.name == 'Treatment & Serum' ? treatments_serums_path :
+          '/' + @product.category.name.downcase.concat('s')
+        %>
+      </a>
+    </p>
+    <h2 class="title is-2"><%= @product.name %></h2>
+  </section>
+  <section>
+    <% if @product.on_sale == true %>
+      <h2>ON SALE!!!</h2>
     <% end %>
-    <%= @product.price %>
-  </li>
-</ul>
+    <% if @product.new == true %>
+      <h2>NEW!</h2>
+    <% end %>
+      <p>
+        <b>
+          <%= @product.on_sale == true ? 'Sale Price: ' : ''%>
+          <%= @product.price %>
+        </b>
+      </p>
+      <p><%= @product.details %></p>
+  </section>
+</div>
+<%= render :partial => 'components/footer' %>

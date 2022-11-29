@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   def index
-    @products = Product.includes(:category).all
+    @products = Product.includes(:category).all.page(params[:page]).per(20)
   end
 
   def show
@@ -9,61 +9,61 @@ class ProductsController < ApplicationController
 
   def bestsellers
     @all = Product.includes(:category).all
-    @products = @all.where(:category => { :name => 'Bestsellers' })
+    @products = @all.where(:category => { :name => 'Bestseller' }).page(params[:page]).per(20)
   end
 
   def cleansers
     @all = Product.includes(:category).all
-    @products = @all.where(:category => { :name => 'Cleansers' })
+    @products = @all.where(:category => { :name => 'Cleanser' }).page(params[:page]).per(20)
   end
 
   def eye_care
     @all = Product.includes(:category).all
-    @products = @all.where(:category => { :name => 'Eye Care' })
+    @products = @all.where(:category => { :name => 'Eye Care' }).page(params[:page]).per(20)
   end
 
   def face_mists
     @all = Product.includes(:category).all
-    @products = @all.where(:category => { :name => 'Face Mists' })
+    @products = @all.where(:category => { :name => 'Face Mist' }).page(params[:page]).per(20)
   end
 
   def makeup_removers
     @all = Product.includes(:category).all
-    @products = @all.where(:category => { :name => 'Makeup Removers' })
+    @products = @all.where(:category => { :name => 'Makeup Remover' }).page(params[:page]).per(20)
   end
 
   def masks
     @all = Product.includes(:category).all
-    @products = @all.where(:category => { :name => 'Masks' })
+    @products = @all.where(:category => { :name => 'Mask' }).page(params[:page]).per(20)
   end
 
   def mini_sized
     @all = Product.includes(:category).all
-    @products = @all.where(:category => { :name => 'Mini Size' })
+    @products = @all.where(:category => { :name => 'Mini Size' }).page(params[:page]).per(20)
   end
 
   def moisturizers
     @all = Product.includes(:category).all
-    @products = @all.where(:category => { :name => 'Moisturizers' })
+    @products = @all.where(:category => { :name => 'Moisturizer' }).page(params[:page]).per(20)
   end
 
   def sets
     @all = Product.includes(:category).all
-    @products = @all.where(:category => { :name => 'Sets' })
+    @products = @all.where(:category => { :name => 'Set' }).page(params[:page]).per(20)
   end
 
   def skin_tools
     @all = Product.includes(:category).all
-    @products = @all.where(:category => { :name => 'Skin Tools' })
+    @products = @all.where(:category => { :name => 'Skin Tool' }).page(params[:page]).per(20)
   end
 
   def sunscreen
     @all = Product.includes(:category).all
-    @products = @all.where(:category => { :name => 'Sunscreen' })
+    @products = @all.where(:category => { :name => 'Sunscreen' }).page(params[:page]).per(20)
   end
 
   def treatments_serums
     @all = Product.includes(:category).all
-    @products = @all.where(:category => { :name => 'Treatments & Serums' })
+    @products = @all.where(:category => { :name => 'Treatment & Serum' }).page(params[:page]).per(20)
   end
 end
