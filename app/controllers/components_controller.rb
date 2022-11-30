@@ -1,7 +1,10 @@
 class ComponentsController < ApplicationController
-  def header
+  def _header
   end
 
-  def footer
+  def _footer
+  end
+
+  def about
   end
 end

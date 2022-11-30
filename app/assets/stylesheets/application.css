@@ -27,11 +27,11 @@ header {
   background-color: #f5c17e;
 }
 
-    header div > p a {
+    header > div > p > a {
       padding: 10px;
     }
 
-      header div h1 > a:hover {
+      header > div > h1 > a:hover {
         border: 1.5px solid #fff;
         border-radius: 0px 65px;
       }
@@ -59,7 +59,7 @@ header {
     text-shadow: 0px 0px 15px #000, 0px 0px 15px #3c3c3c;
   }
 
-  .header-item:first-of-type > a, .navbar-item > h6 > a, .navbar-item > a, .category a, .product a, .footer a, header > div > p > a {
+  .header-item:first-of-type > a, .navbar-item > h6 > a, .navbar-item > a, .category > a, .product > a, .footer > a, header > div > p > a {
     color: #000;
   }
 
@@ -86,6 +86,10 @@ section {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+#search, .products {
+  min-height: 465px;
 }
 
       .contact_info-item {
@@ -119,16 +123,11 @@ section {
 
 footer {
   padding: 4px;
-  margin-top: 1%;
+  margin-top: 4%;
   background-color: #f5c17e;
 }
 
-  .footer {
-    flex-wrap: wrap;
-    margin-bottom: 3%;
-  }
-
-  .to_top {
+  #to_top {
     display: flex;
     justify-content: center;
     color: #000;
@@ -136,7 +135,13 @@ footer {
     padding-top: 5px;
   }
 
-  .to_top:hover {
+  #to_top:hover {
     background-image: linear-gradient(to bottom right, #ace2ff, #d894eb);
     color: #515050;
+  }
+
+  #footer {
+    background-color: #f5c17e;
+    height: 60px;
+    padding: 15px;
   }
