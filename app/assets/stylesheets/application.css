@@ -13,8 +13,12 @@
  *= require_tree .
  *= require_self
  */
-a:hover {
+a:hover:not(.name a:hover) {
   background-image: linear-gradient(to bottom right, #ace2ff, #d894eb)
+}
+
+.name a:hover {
+  color: #f6ac4c;
 }
 
 header {
@@ -22,6 +26,10 @@ header {
   margin-bottom: 1%;
   background-color: #f5c17e;
 }
+
+    header div > p a {
+      padding: 10px;
+    }
 
       header div h1 > a:hover {
         border: 1.5px solid #fff;
@@ -118,4 +126,17 @@ footer {
   .footer {
     flex-wrap: wrap;
     margin-bottom: 3%;
+  }
+
+  .to_top {
+    display: flex;
+    justify-content: center;
+    color: #000;
+    height: 35px;
+    padding-top: 5px;
+  }
+
+  .to_top:hover {
+    background-image: linear-gradient(to bottom right, #ace2ff, #d894eb);
+    color: #515050;
   }

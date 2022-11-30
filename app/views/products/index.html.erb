@@ -18,7 +18,7 @@
 						product.category.name.downcase.concat('s')
 					%>
 				</span>
-				<h4 class="title is-4"><%= link_to product.name, product_path(product.id) %></h4>
+				<h4 class="name title is-4"><%= link_to product.name, product_path(product.id) %></h4>
 				<h5 class="title is-5"><%= product.on_sale == true ? 'ON SALE!' : '' %></h5>
 				<p><b><%= product.price %></b></p>
 				<p><%= truncate(product.details, :length => 100) %></p>
