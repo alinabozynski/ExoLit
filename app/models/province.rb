@@ -1,4 +1,5 @@
 class Province < ApplicationRecord
+  has_many :customers
   validates :name, presence: true
   validate :hst_if_no_gst_or_pst
   validates :hst, presence: true, if: -> {!gst.present? && !pst.present?}
