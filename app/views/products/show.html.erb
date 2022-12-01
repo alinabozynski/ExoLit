@@ -21,7 +21,7 @@
     <% if @product.on_sale == true %>
       <h2>ON SALE!!!</h2>
     <% end %>
-    <% if @product.new == true %>
+    <% if @product.created_at >= DateTime.now-3.days %>
       <h2>NEW!</h2>
     <% end %>
     <% if @product.image.attached? %>

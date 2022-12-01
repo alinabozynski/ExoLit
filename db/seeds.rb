@@ -31,11 +31,7 @@ products.each do |product|
     else
       false
     end,
-  new:
-    if product['new'] != "null" || product['new'] == true
-      true
-    else
-      false
-    end,
   category: Category.where(:name => category.name).first)
-endAdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+end
+
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

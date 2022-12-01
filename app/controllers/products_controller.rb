@@ -82,6 +82,6 @@ class ProductsController < ApplicationController
 
   def new
     @all = Product.includes(:category).all
-    @products = @all.where(:new => true).page(params[:page]).per(20)
+    @products = @all.where('created_at >= ?', DateTime.now-3.days).page(params[:page]).per(20)
   end
 end

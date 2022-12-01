@@ -6,7 +6,7 @@
 	<section class="is-flex">
 			<% @products.shuffle().each do |product| %>
 				<div class="product">
-					<h4 class="title is-4"><%= product.new == true ? 'NEW! ' : '' %></h4>
+					<h4 class="title is-4"><%= product.created_at >= DateTime.now-3.days ? 'NEW! ' : '' %></h4>
 					<span class="category">
 						<%= link_to product.category.name,
 							product.category.name == 'Eye Care' ? eye_care_path :

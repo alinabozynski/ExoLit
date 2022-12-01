@@ -78,7 +78,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_01_055950) do
     t.text "details"
     t.string "price"
     t.boolean "on_sale"
-    t.boolean "new"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "category_id"
