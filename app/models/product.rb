@@ -1,7 +1,5 @@
 class Product < ApplicationRecord
   belongs_to :category
-  validates :name, presence: true
-  validates :details, presence: true
-  validates :price, format: { with: /\$\d+\.\d{2}/,  message: "Acceptable format for 'price' and 'on_sale' values: $___.{2}" }, presence: true, unless: ->(product) { product.on_sale.present? }
-  validates :on_sale, format: { with: /\$\d+\.\d{2}/, message: "Acceptable format for 'price' and 'on_sale' values: $___.{2}" }, presence: true, unless: ->(product) { product.price.present? }
+  validates :name, :details, :on_sale, :new, presence: true
+  validates :price, format: { with: /\$\d+\.[0-9][0-9]/,  message: "Acceptable format for 'price' values: $___.{2}" }, presence: true
 end
