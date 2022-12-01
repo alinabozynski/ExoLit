@@ -8,10 +8,11 @@ class ProductsController < ApplicationController
   end
 
   def search
-    if params['product']['category'] == ''
-      @products = Product.where("name LIKE ? OR details LIKE ?", "%" + params['product_name'] + "%", "%" + params['product_name'] + "%").page(params[:page]).per(20)
+    if params[:product][:category] == ''
+      @products = Product.where("name LIKE ? OR details LIKE ?", "%" + params[:product_name] + "%", "%" + params[:product_name] + "%").all.page(params[:page]).per(20)
     else
-      @products = Product.where("name LIKE ? OR details LIKE ? AND :category = ?", "%" + params['product_name'] + "%", "%" + params['product_name'] + "%", params['product']['category']).all.page(params[:page]).per(20)
+      id = Category.select('id').where(:name => params[:product][:category]).first.id
+      @products = Product.where("name LIKE ? OR details LIKE ?", "%" + params[:product_name] + "%", "%" + params[:product_name] + "%").where(:category_id => id).all.page(params[:page]).per(20)
     end
   end
 
