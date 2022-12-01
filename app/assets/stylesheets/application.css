@@ -42,6 +42,11 @@ header {
       margin-right: 5px;
     }
 
+    header .search button {
+      padding: 12px;
+      margin: 0px 5px;
+    }
+
   .header-item, .navbar-item, .footer-item {
     margin: auto;
   }
@@ -66,7 +71,7 @@ header {
 
     .cart-icon {
       height: fit-content;
-      background-color: #515050;
+      background-image: linear-gradient(to bottom, #848484, #474747);
     }
 
     .navbar {
