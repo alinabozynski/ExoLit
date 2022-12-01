@@ -1,5 +1,8 @@
 class Product < ApplicationRecord
-  has_one_attached :image
+  has_one_attached :image do |attachable|
+    attachable.variant :thumb, resize_to_fit: [200, 200]
+    attachable.variant :showcase, resize_to_fit: [400, 400]
+  end
 
   attr_accessor :delete_image
 
