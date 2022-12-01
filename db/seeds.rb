@@ -7,6 +7,7 @@ require 'csv'
 
 Product.destroy_all
 Category.destroy_all
+AdminUser.destroy_all
 
 csv_file = Rails.root.join('db/skincare.csv')
 csv_data = File.read(csv_file)

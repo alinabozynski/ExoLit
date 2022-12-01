@@ -96,9 +96,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_01_185334) do
 
   create_table "provinces", force: :cascade do |t|
     t.string "name"
-    t.string "pst"
-    t.string "gst"
-    t.string "hst"
+    t.decimal "pst"
+    t.decimal "gst"
+    t.decimal "hst"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
