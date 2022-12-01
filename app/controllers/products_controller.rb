@@ -11,7 +11,7 @@ class ProductsController < ApplicationController
     if params['product']['category'] == ''
       @products = Product.where("name LIKE ? OR details LIKE ?", "%" + params['product_name'] + "%", "%" + params['product_name'] + "%").page(params[:page]).per(20)
     else
-      @products = Product.where("name LIKE ? OR details LIKE ? AND :category.name = ?", "%" + params['product_name'] + "%", "%" + params['product_name'] + "%", params['product']['category']).all.page(params[:page]).per(20)
+      @products = Product.where("name LIKE ? OR details LIKE ? AND :category = ?", "%" + params['product_name'] + "%", "%" + params['product_name'] + "%", params['product']['category']).all.page(params[:page]).per(20)
     end
   end
 
@@ -73,5 +73,15 @@ class ProductsController < ApplicationController
   def treatments_serums
     @all = Product.includes(:category).all
     @products = @all.where(:category => { :name => 'Treatment & Serum' }).page(params[:page]).per(20)
+  end
+
+  def on_sale
+    @all = Product.includes(:category).all
+    @products = @all.where(:on_sale => true).page(params[:page]).per(20)
+  end
+
+  def new
+    @all = Product.includes(:category).all
+    @products = @all.where(:new => true).page(params[:page]).per(20)
   end
 end

@@ -1,0 +1,32 @@
+<%= render 'components/header', page: 'SALES' %>
+<div class="products">
+	<div class="container">
+		<h2 class="title is-2">Products on Sale</h2>
+	</div>
+	<section class="is-flex">
+			<% @products.shuffle().each do |product| %>
+				<div class="product">
+					<h4 class="title is-4"><%= product.new == true ? 'NEW! ' : '' %></h4>
+					<span class="category">
+						<%= link_to product.category.name,
+							product.category.name == 'Eye Care' ? eye_care_path :
+							product.category.name == 'Face Mist' ? face_mists_path :
+							product.category.name == 'Makeup Remover' ? makeup_removers_path :
+							product.category.name == 'Mini Size' ? mini_sized_path :
+							product.category.name == 'Skin Tool' ? skin_tools_path :
+							product.category.name == 'Sunscreen' ? sunscreen_path :
+							product.category.name == 'Treatment & Serum' ? treatments_serums_path :
+							product.category.name.downcase.concat('s')
+						%>
+					</span>
+					<h4 class="name title is-4"><%= link_to product.name, product_path(product.id) %></h4>
+					<p><b><%= product.price %></b></p>
+					<p><%= truncate(product.details, :length => 100) %></p>
+				</div>
+			<% end %>
+	</section>
+	<div class="container">
+		<%= paginate @products %>
+	</div>
+</div>
+<%= render :partial => 'components/footer' %>
