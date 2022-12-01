@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   get '/', to: 'products#index'
-  get '/about&contact', to: 'components#about'
   get 'products/:id', to: 'products#show', as: 'product'
+  get '/about&contact', to: 'components#about'
+  get '/search', to: 'products#search'
   get '/bestsellers', to: 'products#bestsellers'
   get '/cleansers', to: 'products#cleansers'
   get '/eye_care', to: 'products#eye_care'

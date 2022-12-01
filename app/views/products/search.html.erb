@@ -1,0 +1,31 @@
+<%= render 'components/header', page: 'Search' %>
+<div class="container">
+	<h3 class="title is-3"><%= params['product_name'] == '' && params['product']['category'] == '' ? 'Please ensure that either the search bar is filled out or there is a category selected before searching. Displaying all products.' : 'Search Results' %><%= params['product_name'] != '' ? " for '".concat(params['product_name']).concat("'") : '' %><%= params['product']['category'] != '' ? " in '".concat(params['product']['category']).concat("' ") : '' %></h3>
+</div>
+<section class="is-flex" id="search">
+		<% @products.each do |product| %>
+			<div class="product">
+				<h4 class="title is-4"><%= product.new == true ? 'NEW! ' : '' %></h4>
+				<span class="category">
+					<%= link_to product.category.name,
+						product.category.name == 'Eye Care' ? eye_care_path :
+						product.category.name == 'Face Mist' ? face_mists_path :
+						product.category.name == 'Makeup Remover' ? makeup_removers_path :
+						product.category.name == 'Mini Size' ? mini_sized_path :
+						product.category.name == 'Skin Tool' ? skin_tools_path :
+						product.category.name == 'Sunscreen' ? sunscreen_path :
+						product.category.name == 'Treatment & Serum' ? treatments_serums_path :
+						product.category.name.downcase.concat('s')
+					%>
+				</span>
+				<h4 class="name title is-4"><%= link_to product.name, product_path(product.id) %></h4>
+				<h5 class="title is-5"><%= product.on_sale == true ? 'ON SALE!' : '' %></h5>
+				<p><b><%= product.price %></b></p>
+				<p><%= truncate(product.details, :length => 100) %></p>
+			</div>
+		<% end %>
+</section>
+<div class="container">
+  <%= paginate @products %>
+</div>
+<%= render :partial => 'components/footer' %>

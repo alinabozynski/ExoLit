@@ -7,6 +7,14 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
 
+  def search
+    if params['product']['category'] == ''
+      @products = Product.where("name LIKE ? OR details LIKE ?", "%" + params['product_name'] + "%", "%" + params['product_name'] + "%").page(params[:page]).per(20)
+    else
+      @products = Product.where("name LIKE ? OR details LIKE ? AND :category.name = ?", "%" + params['product_name'] + "%", "%" + params['product_name'] + "%", params['product']['category']).all.page(params[:page]).per(20)
+    end
+  end
+
   def bestsellers
     @all = Product.includes(:category).all
     @products = @all.where(:category => { :name => 'Bestseller' }).page(params[:page]).per(20)
