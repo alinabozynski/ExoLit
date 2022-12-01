@@ -4,6 +4,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 # Pagination
 gem 'kaminari'
 
+# For Image Resizing
+gem 'image_processing', '~> 1.2'
+
 # ActiveAdmin
 gem 'sassc-rails'
 gem 'activeadmin'
