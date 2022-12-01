@@ -19,8 +19,4 @@ Rails.application.routes.draw do
   get '/treatments_serums', to: 'products#treatments_serums'
   get '/sales', to: 'products#on_sale'
   get '/new', to: 'products#new'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
 end

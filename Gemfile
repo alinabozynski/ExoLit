@@ -5,6 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gem 'kaminari'
 
 # ActiveAdmin
+gem 'sassc-rails'
 gem 'activeadmin'
 gem 'devise'
 
