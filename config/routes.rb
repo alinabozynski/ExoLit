@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'records/admin_login'
+  get 'records/customer_login'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   get '/', to: 'products#index'
