@@ -4,15 +4,14 @@ class Product < ApplicationRecord
     attachable.variant :showcase, resize_to_fit: [400, 400]
   end
 
-  attr_accessor :delete_image
-
-after_commit :remove_image, on: [:create, :destroy], if: :delete_image
-
-private def remove_image
-  Product.image.purge
-end
-
   belongs_to :category
   validates :name, :details, presence: true
-  validates :price, format: { with: /\$\d+\.[0-9][0-9]/,  message: "Acceptable format for 'price' values: $___.{2}" }, presence: true
+  validates :price, format: { with: /\$\d+\.\d\d/,  message: "Acceptable format for 'price' values: $____.__" }, presence: true
+  validate :price_control
+
+  def price_control
+    if price.partition('.').last.length != 2
+      errors.add(:price, 'The price must have 2 digits after the decimal.')
+    end
+  end
 end

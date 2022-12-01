@@ -10,8 +10,6 @@ ActiveAdmin.register Product do
       f.inputs do
         f.input :image, as: :file, :hint => image_tag(f.object.image, size: "300x300")
       end
-      f.label :delete_image
-      f.checkbox :delete_image
     else
       f.inputs do
         f.input :image, as: :file
