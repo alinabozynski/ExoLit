@@ -8,6 +8,7 @@ require 'csv'
 Product.destroy_all
 Category.destroy_all
 AdminUser.destroy_all
+Province.destroy_all
 
 csv_file = Rails.root.join('db/skincare.csv')
 csv_data = File.read(csv_file)
@@ -36,3 +37,16 @@ products.each do |product|
 end
 
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+
+csv_file_province = Rails.root.join('db/provinces.csv')
+csv_data_province = File.read(csv_file_province)
+
+provinces = CSV.parse(csv_data_province, headers: true, encoding: 'iso-8859-1')
+
+provinces.each do |province|
+  Province.create(
+  name: province[0],
+  pst: province['pst'],
+  gst: province['gst'],
+  hst: province['hst'])
+end
