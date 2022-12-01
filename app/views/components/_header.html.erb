@@ -4,7 +4,7 @@
     <div class="is-flex">
         <h1 class="header-item title is-1 pr-3"><a href='/'>ExoLit Co.🫧 </a><span class="title is-3"><%= request.original_url.match?(/http?:\/\/localhost\:3000\/[\w]+/) ? "⟫ ".concat(local_assigns[:page]) : '' %></span></h1>
         <form action="/search" class="search header-item is-flex">
-            <input type="text" placeholder="Search the Entire Store! (Searches through product names and descriptions.)" name="product_name">
+            <input type="text" placeholder="Search within product names and descriptions" name="product_name">
             <span><%= collection_select(:product, :category, Category.all.select(:name).distinct, :name, :name, prompt: 'Search in a Category') %></span>
             <button type="submit">Search</button>
         </form>
