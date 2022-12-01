@@ -20,6 +20,9 @@
 						%>
 					</span>
 					<h4 class="name title is-4"><%= link_to product.name, product_path(product.id) %></h4>
+					<% if product.image.attached? %>
+						<p><%= image_tag(url_for(product.image), style: 'height:20vw;width:18vw') %></p>
+					<% end %>
 					<p><b><%= product.price %></b></p>
 					<p><%= truncate(product.details, :length => 100) %></p>
 				</div>

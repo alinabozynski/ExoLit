@@ -24,6 +24,9 @@
     <% if @product.new == true %>
       <h2>NEW!</h2>
     <% end %>
+    <% if @product.image.attached? %>
+			<p><%= image_tag(url_for(@product.image), style: 'height:20vw;width:18vw') %></p>
+		<% end %>
       <p>
         <b>
           <%= @product.on_sale == true ? 'Sale Price: ' : '' %>
