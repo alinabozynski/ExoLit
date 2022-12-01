@@ -1,2 +1,13 @@
-<h1>Records#customer_login</h1>
-<p>Find me in app/views/records/customer_login.html.erb</p>
+<%= render 'components/header', page: 'Login' %>
+<div class="container">
+  <h4 class="title is-4">Login</h4>
+  <form action="/customer_login" method="post">
+    <label for="username">Username:</label>
+    <input type="text" name="username"><br>
+    <label for="password">Password:</label>
+    <input type="text" name="password"><br>
+    <button type="submit">Start Shopping</button>
+  </form>
+  <h5 class="title is-5">Don't have an account? <a href="/sign_up">Sign Up Here</a></h5>
+</div>
+<%= render :partial => 'components/footer' %>
