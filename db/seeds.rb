@@ -38,4 +38,4 @@ products.each do |product|
       false
     end,
   category: Category.where(:name => category.name).first)
-end
+endAdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

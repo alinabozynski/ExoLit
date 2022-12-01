@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   get '/', to: 'products#index'
   get 'products/:id', to: 'products#show', as: 'product'
   get '/about&contact', to: 'components#about'

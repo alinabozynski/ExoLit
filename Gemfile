@@ -1,7 +1,12 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+# Pagination
 gem 'kaminari'
+
+# ActiveAdmin
+gem 'activeadmin'
+gem 'devise'
 
 ruby "2.7.1"
 
