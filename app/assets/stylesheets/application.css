@@ -127,6 +127,10 @@ section {
         background-image: linear-gradient(to bottom right, #ace2ff, #d894eb);
       }
 
+  .errors {
+    color: #ff0000;
+  }
+
 footer {
   padding: 4px;
   margin-top: 4%;
