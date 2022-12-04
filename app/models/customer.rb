@@ -1,6 +1,7 @@
 class Customer < ApplicationRecord
   belongs_to :province, optional: true
   validates :username, presence: true
+  validates_uniqueness_of :username
   validates :password, confirmation: true, presence: true
   validates :postal_code, format: { with: /[A-Za-z]\d[A-Za-z][\s]?\d[A-Za-z]\d/,  message: "Ensure the postal code has a valid Canadian format ('ANA NAN', where 'A' represents an alphabetic character and 'N' represents a numeric character)." }, if: -> {postal_code.present?}
   validate :postal
