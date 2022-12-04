@@ -26,7 +26,8 @@ class CustomersController < ApplicationController
     if @errors.length == 0
       new_customer = Customer.create(
         username: params[:username],
-        password: params[:password],
+        password_hash: params[:password],
+        password_salt: params[:password],
         city: params[:city],
         address: params[:address],
         postal_code: params[:postal],

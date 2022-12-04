@@ -1,8 +1,7 @@
 class Customer < ApplicationRecord
   belongs_to :province, optional: true
-  validates :username, presence: true
-  validates_uniqueness_of :username
-  validates :password, confirmation: true, presence: true
+  validates :username, presence: true, uniqueness: true
+  validates :password_hash, :password_salt, presence: true
   validates :city, presence: true, if: -> {address.present?}
   validates :address, presence: true, if: -> {postal_code.present?}
   validates :postal_code, presence: true, if: -> {province_id.present?}

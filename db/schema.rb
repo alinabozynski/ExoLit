@@ -75,7 +75,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_01_202741) do
 
   create_table "customers", force: :cascade do |t|
     t.string "username"
-    t.string "password"
+    t.string "password_hash"
+    t.string "password_salt"
     t.string "city"
     t.string "address"
     t.string "postal_code"
