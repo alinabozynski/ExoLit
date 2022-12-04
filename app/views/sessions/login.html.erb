@@ -1,0 +1,14 @@
+<%= render 'components/header', page: 'Log In' %>
+<div class="container">
+  <h2 class="title is-2">Log In</h2>
+  <%= form_tag login_path do %>
+    <%= label_tag :username %>
+    <%= text_field_tag :username %><br>
+    <%= label_tag :password %>
+    <%= password_field_tag :password %><br>
+    <%= submit_tag "Sign in" %>
+  <% end %>
+  <hr style="background-color:white">
+  <h5 class="title is-5">Don't have an account? <a href="/sign_up">Sign Up Here!</a></h5>
+</div>
+<%= render :partial => 'components/footer' %>
