@@ -30,7 +30,7 @@ class CustomersController < ApplicationController
         city: params[:city],
         address: params[:address],
         postal_code: params[:postal],
-        province_id: 2
+        province_id: id
       )
 
       new_customer.errors.full_messages.each do |message|

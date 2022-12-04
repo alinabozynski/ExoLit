@@ -17,7 +17,8 @@
     <label for="password_confirmation">Re-Enter Password:</label>
     <input type="password" name="password_confirmation"><br>
     <hr style="background-color:white">
-    <h3 class="title is-3">Optional Upon Sign Up</h3><br>
+    <h3 class="title is-3">Optional Upon Sign Up</h3>
+    <p>However, if one field below is filled, they all must be.</p><br>
     <span class="is-flex"><%= collection_select(:customer, :province, Province.all.select(:name).distinct, :name, :name, prompt: 'Select a Province') %></span>
     <label for="city">City:</label>
     <input type="text" name="city"><br>
