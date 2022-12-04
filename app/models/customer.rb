@@ -1,13 +1,30 @@
 class Customer < ApplicationRecord
-  belongs_to :province, optional: true
+  attr_accessor :password
+  validates_confirmation_of :password
   validates :username, presence: true, uniqueness: true
-  validates :password_hash, :password_salt, presence: true
+  before_save :encrypt_password
+
+  belongs_to :province, optional: true
   validates :city, presence: true, if: -> {address.present?}
   validates :address, presence: true, if: -> {postal_code.present?}
   validates :postal_code, presence: true, if: -> {province_id.present?}
   validates :province_id, presence: true, if: -> {city.present?}
   validates :postal_code, format: { with: /[A-Za-z]\d[A-Za-z][\s]?\d[A-Za-z]\d/,  message: " must be in the valid Canadian format, 'ANA NAN', where 'A' represents an alphabetic character and 'N' represents a numeric character." }, if: -> {postal_code.present?}
   validate :postal
+
+  def encrypt_password
+    self.password_salt = BCrypt::Engine.generate_salt
+    self.password_hash = BCrypt::Engine.hash_secret(password,password_salt)
+  end
+
+  def self.authenticate(username, password)
+    custo = Customer.find_by("username = ?", username)
+    if custo && custo.password_hash == BCrypt::Engine.hash_secret(password, custo.password_salt)
+      custo
+    else
+      nil
+    end
+  end
 
   def postal
     if postal_code.present?

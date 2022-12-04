@@ -1,33 +1,26 @@
 <%= render 'components/header', page: 'Sign Up' %>
 <div class="container">
-  <h2 class="title is-2">Sign  Up</h2>
-  <% if @errors.length > 0 %>
-    <% @errors.each do |e| %>
-      <p class="errors"><%= e %></p>
-    <% end %>
-    <hr style="background-color:white">
-  <% end %>
-
-  <form action="/sign_up">
-    <h3 class="title is-3">Set Account Information</h3>
-    <label for="username">Username:</label>
-    <input type="text" name="username"><br>
-    <label for="password">Password:</label>
-    <input type="password" name="password"><br>
-    <label for="password_confirmation">Re-Enter Password:</label>
-    <input type="password" name="password_confirmation"><br>
+  <h2 class="title is-2">Sign Up</h2>
+  <%= @testing %>
+  <%= form_for @customer do |f| %>
+    <%= f.label "Username" %>
+    <%= f.text_field :username %><br>
+    <%= f.label "Password" %>
+    <%= f.password_field :password %><br>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %><br>
     <hr style="background-color:white">
     <h3 class="title is-3">Optional Upon Sign Up</h3>
     <p>*This information will be required to be filled out when placing orders.</p>
     <p>*If choosing to fill out this section now, all fields must be filled.</p><br>
-    <span class="is-flex"><%= collection_select(:customer, :province, Province.all.select(:name).distinct, :name, :name, prompt: 'Select a Province') %></span>
-    <label for="city">City:</label>
-    <input type="text" name="city"><br>
-    <label for="address">Address:</label>
-    <input type="text" name="address"><br>
-    <label for="postal">Postal Code:</label>
-    <input type="text" name="postal"><br>
-    <button type="submit">Sign Up</button>
-  </form>
+    <span class="is-flex"><%= collection_select(:customer, :province, Province.all.select(:name).distinct, :name, :name, prompt: 'Select a Province') %></span><br>
+    <%= f.label "City" %>
+    <%= f.text_field :city %><br>
+    <%= f.label "Address" %>
+    <%= f.text_field :address %><br>
+    <%= f.label "Postal Code" %>
+    <%= f.text_field :postal_code %><br>
+    <%= f.submit "Sign Up" %>
+  <% end %>
 </div>
 <%= render :partial => 'components/footer' %>

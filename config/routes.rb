@@ -1,11 +1,19 @@
 Rails.application.routes.draw do
-  get '/login', to: 'customers#login'
-  get '/sign_up', to: 'customers#sign_up'
+  get '/sign_up' => 'customers#sign_up'
+  post '/customers' => 'customers#create'
+
+  get '/login' => 'sessions#login'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+
   get '/', to: 'products#index'
   get 'products/:id', to: 'products#show', as: 'product'
+
   get '/about&contact', to: 'components#about'
+
   get '/search', to: 'products#search'
   get '/bestsellers', to: 'products#bestsellers'
   get '/cleansers', to: 'products#cleansers'
