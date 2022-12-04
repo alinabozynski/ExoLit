@@ -3,24 +3,39 @@ class CustomersController < ApplicationController
   end
 
   def sign_up
-    if params[:password] == '' || params[:password] != params[:password_confirmation]
-      @password_error = "The password fields cannot be blank and must match!"
-    else
-      if params[:customer][:province] != ''
-        id = Province.where(name: params[:customer][:province]).first.id
-      end
+    @usernames = []
+    Customer.all.each do |c|
+      @usernames.append(c.username)
+    end
 
-      Customer.create(
+    @errors = []
+    if @usernames.include? params[:username]
+      @errors.append("Sorry, username already exists. Please choose another.")
+    end
+    if params[:password] != params[:password_confirmation]
+      @errors.append("The password fields must match.")
+    end
+    if params[:password] == ''
+      @errors.append("The password fields cannot be blank.")
+    end
+
+    if params[:postal]
+      id = Province.where(:name => params[:customer][:province]).first.id
+    end
+
+    if @errors.length == 0
+      new_customer = Customer.create(
         username: params[:username],
         password: params[:password],
         city: params[:city],
         address: params[:address],
         postal_code: params[:postal],
-        province_id:
-        if params[:customer][:province] != ''
-          id
-        end
+        province_id: 2
       )
+
+      new_customer.errors.full_messages.each do |message|
+        @errors.append(message)
+      end
     end
   end
 end
