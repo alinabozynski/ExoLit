@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get '/login', to: 'records#customer_login'
-  get '/sign_up', to: 'records#sign_up'
+  get '/login', to: 'customers#login'
+  get '/sign_up', to: 'customers#sign_up'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   get '/', to: 'products#index'

@@ -1,0 +1,27 @@
+<%= render 'components/header', page: 'Sign Up' %>
+<div class="container">
+  <h2 class="title is-2">Sign  Up</h2>
+
+  <form action="/sign_up">
+    <h3 class="title is-3">Set Account Information</h3>
+    <label for="username">Username:</label>
+    <input type="text" name="username"><br>
+    <label for="password">Password:</label>
+    <input type="password" name="password"><br>
+    <label for="password_confirmation">Re-Enter Password:</label>
+    <input type="password" name="password_confirmation"><br>
+    <hr style="background-color:white">
+    <p class="errors"><%= @password_error != '' ? @password_error : '' %></p>
+    <hr style="background-color:white">
+    <h3 class="title is-3">Optional Upon Sign Up</h3><br>
+    <span class="is-flex"><%= collection_select(:customer, :province, Province.all.select(:name).distinct, :name, :name, prompt: 'Select a Province') %></span>
+    <label for="city">City:</label>
+    <input type="text" name="city"><br>
+    <label for="address">Address:</label>
+    <input type="text" name="address"><br>
+    <label for="postal">Postal Code:</label>
+    <input type="text" name="postal"><br>
+    <button type="submit">Sign Up</button>
+  </form>
+</div>
+<%= render :partial => 'components/footer' %>

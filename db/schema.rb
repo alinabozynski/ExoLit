@@ -81,7 +81,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_01_202741) do
     t.string "postal_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "province_id", null: true
+    t.integer "province_id"
     t.index ["province_id"], name: "index_customers_on_province_id"
   end
 

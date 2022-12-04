@@ -1,13 +1,15 @@
 <%= render 'components/header', page: 'Login' %>
 <div class="container">
-  <h4 class="title is-4">Login</h4>
-  <form action="/customer_login" method="post">
+  <h2 class="title is-2">Login</h2>
+
+  <form action="/customer_login">
     <label for="username">Username:</label>
     <input type="text" name="username"><br>
     <label for="password">Password:</label>
-    <input type="text" name="password"><br>
-    <button type="submit">Start Shopping</button>
+    <input type="password" name="password"><br>
+    <button type="submit">🫧 Start Shopping 🛒</button>
   </form>
+  <hr>
   <h5 class="title is-5">Don't have an account? <a href="/sign_up">Sign Up Here</a></h5>
 </div>
 <%= render :partial => 'components/footer' %>
