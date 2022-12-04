@@ -13,7 +13,11 @@
         <% end %>
         <p class="header-item"><a href='/admin'>Admin</a></p>
         <% if current_custo %>
-            <p class="header-item"><a href='/logout'>Logout</a></p>
+            <% if current_custo.province.nil? %>
+                <p class="header-item"><a href='/account'>Account</a></p>
+            <% else %>
+                <p class="header-item"><a href='/logout'>Logout</a></p>
+            <% end %>
         <% else %>
             <p class="header-item"><a href='/login'>Login</a></p>
         <% end %>

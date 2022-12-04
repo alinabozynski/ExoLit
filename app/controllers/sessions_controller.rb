@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   def create
     @custo = Customer.authenticate(params[:username], params[:password])
     if @custo
-      flash[:notice] = "You've signed in."
+      flash[:notice] = "You are now signed in."
       session[:custo_id] = @custo.id
       redirect_to "/"
     else

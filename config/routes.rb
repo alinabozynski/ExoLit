@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   get '/sign_up' => 'customers#sign_up'
   post '/customers' => 'customers#create'
+  get '/account' => 'customers#account'
+  post '/update' => 'customers#update'
 
   get '/login' => 'sessions#login'
   post '/login' => 'sessions#create'

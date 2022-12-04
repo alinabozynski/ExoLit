@@ -1,0 +1,16 @@
+<%= render 'components/header', page: 'Account Info' %>
+<div class="container">
+  <h5 class="title is-5" id="logout"><%= link_to 'Log Out', logout_path %></h5>
+  <h2 class="title is-2">Add Address Information</h2>
+  <%= form_for @customer, :url => update_path do |f| %>
+    <%= f.collection_select(:province, Province.all, :id, :name, prompt: 'Select a Province') %><br>
+    <%= f.label "City" %>
+    <%= f.text_field :city %><br>
+    <%= f.label "Address" %>
+    <%= f.text_field :address %><br>
+    <%= f.label "Postal Code" %>
+    <%= f.text_field :postal_code %><br>
+    <%= f.submit "Update" %>
+  <% end %>
+</div>
+<%= render :partial => 'components/footer' %>

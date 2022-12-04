@@ -118,6 +118,12 @@ section {
       float: right;
     }
 
+    #logout > a {
+      float: right;
+      text-decoration: none;
+      padding: 10px;
+    }
+
       .navbar-item:hover {
         background-image: linear-gradient(to bottom right, #ace2ff, #d894eb);
       }
@@ -133,7 +139,7 @@ section {
 
   .flash {
     background-color: #f5c17e;
-    padding-left: 35px;
+    padding-left: 30px;
   }
 
 footer {
