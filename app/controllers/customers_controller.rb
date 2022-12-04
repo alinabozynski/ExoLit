@@ -4,38 +4,36 @@ class CustomersController < ApplicationController
   end
 
   def create
-    @testing = custo_params
-    @custo = Customer.new(custo_params)
-    if @custo.save
+    if params[:customer][:province]
+      province = Province.where(:id => params[:customer][:province]).first
+    end
+    @customer = Customer.new(customer_params)
+    @customer.province = province
+
+    # If the record is valid and is saved
+    if @customer.save
+      # Notify the user that their account has been created
       flash[:notice] = "You've successfully created an account!"
-      session[:custo_id] = @custo.id
+      # Set a session variable to their new account ID value
+      session[:custo_id] = @customer.id
+
+      # Redirect after submission
       redirect_to "/"
     else
-      # Default error message
-      flash[:alert] = "There was a problem signing up."
-
-      # Custom error messages
-      @usernames = []
-      Customer.all.each do |c|
-        @usernames.append(c.username)
-      end
-      if @usernames.include? params[:customer][:username]
-        flash[:alert] = "Sorry, username already exists. Please choose another."
-      end
-      if params[:customer][:password] != params[:customer][:password_confirmation]
-        flash[:alert] = "The password fields must match."
-      end
-      if params[:customer][:password] == ''
-        flash[:alert] = "The password fields cannot be blank."
+      # Display error messages
+      flash[:alert] = []
+      @customer.errors.full_messages.each do |error|
+        flash[:alert].append(error)
       end
 
+      # Redirect after invalid submission
       redirect_to '/sign_up'
     end
   end
 
   private
 
-  def custo_params
+  def customer_params
     params.require(:customer).permit(:username, :password, :password_confirmation, :city, :address, :postal_code)
   end
 end

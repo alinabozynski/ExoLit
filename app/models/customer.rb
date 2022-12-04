@@ -3,6 +3,7 @@ class Customer < ApplicationRecord
   validates_confirmation_of :password
   validates :username, presence: true, uniqueness: true
   before_save :encrypt_password
+  validates :password, presence: true
 
   belongs_to :province, optional: true
   validates :city, presence: true, if: -> {address.present?}

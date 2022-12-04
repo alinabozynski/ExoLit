@@ -11,8 +11,13 @@
   </head>
 
   <body>
-    <%= flash[:alert] %>
-    <%= flash[:notice] %>
+    <% if flash[:alert] %>
+      <% flash[:alert].each do |message| %>
+        <p class="errors flash">*** <%= message %></p>
+      <% end %>
+    <% end %>
+
+    <p class="flash"><%= flash[:notice] %></p>
 
     <%= yield %>
   </body>

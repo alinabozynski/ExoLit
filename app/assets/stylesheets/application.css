@@ -131,6 +131,11 @@ section {
     color: #f6ac4c;
   }
 
+  .flash {
+    background-color: #f5c17e;
+    padding-left: 35px;
+  }
+
 footer {
   padding: 4px;
   margin-top: 4%;

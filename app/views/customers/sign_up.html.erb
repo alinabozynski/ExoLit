@@ -1,7 +1,6 @@
 <%= render 'components/header', page: 'Sign Up' %>
 <div class="container">
   <h2 class="title is-2">Sign Up</h2>
-  <%= @testing %>
   <%= form_for @customer do |f| %>
     <%= f.label "Username" %>
     <%= f.text_field :username %><br>
@@ -13,7 +12,7 @@
     <h3 class="title is-3">Optional Upon Sign Up</h3>
     <p>*This information will be required to be filled out when placing orders.</p>
     <p>*If choosing to fill out this section now, all fields must be filled.</p><br>
-    <span class="is-flex"><%= collection_select(:customer, :province, Province.all.select(:name).distinct, :name, :name, prompt: 'Select a Province') %></span><br>
+    <%= f.collection_select(:province, Province.all, :id, :name, prompt: 'Select a Province') %><br>
     <%= f.label "City" %>
     <%= f.text_field :city %><br>
     <%= f.label "Address" %>
