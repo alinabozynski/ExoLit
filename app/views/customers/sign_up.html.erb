@@ -1,6 +1,12 @@
 <%= render 'components/header', page: 'Sign Up' %>
 <div class="container">
   <h2 class="title is-2">Sign  Up</h2>
+  <% if @errors.length > 0 %>
+    <% @errors.each do |e| %>
+      <p class="errors"><%= e %></p>
+    <% end %>
+    <hr style="background-color:white">
+  <% end %>
 
   <form action="/sign_up">
     <h3 class="title is-3">Set Account Information</h3>
@@ -10,8 +16,6 @@
     <input type="password" name="password"><br>
     <label for="password_confirmation">Re-Enter Password:</label>
     <input type="password" name="password_confirmation"><br>
-    <hr style="background-color:white">
-    <p class="errors"><%= @password_error != '' ? @password_error : '' %></p>
     <hr style="background-color:white">
     <h3 class="title is-3">Optional Upon Sign Up</h3><br>
     <span class="is-flex"><%= collection_select(:customer, :province, Province.all.select(:name).distinct, :name, :name, prompt: 'Select a Province') %></span>
