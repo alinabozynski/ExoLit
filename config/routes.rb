@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  # Session Cart
+  post 'products/add_to_cart/:id', to: 'products#add_to_cart', as: 'add_to_cart'
+  get 'cart', to: 'products#cart'
+  delete 'products/remove_from_cart/:id', to: 'products#remove_from_cart', as: 'remove_from_cart'
+
+  # Login and Registrations
   get '/sign_up' => 'customers#sign_up'
   post '/customers' => 'customers#create'
   get '/account' => 'customers#account'
@@ -8,14 +14,16 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
 
+  # Active Admin
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-  get '/', to: 'products#index'
-  get 'products/:id', to: 'products#show', as: 'product'
-
+  # Information
   get '/about&contact', to: 'components#about'
 
+  # Products
+  get '/', to: 'products#index'
+  get 'products/:id', to: 'products#show', as: 'product'
   get '/search', to: 'products#search'
   get '/bestsellers', to: 'products#bestsellers'
   get '/cleansers', to: 'products#cleansers'

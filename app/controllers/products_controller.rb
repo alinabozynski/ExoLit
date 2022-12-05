@@ -16,6 +16,18 @@ class ProductsController < ApplicationController
     end
   end
 
+  def add_to_cart
+    id = params[:id].to_i
+    session[:cart] << id
+    redirect_to(request.env['HTTP_REFERER'])
+  end
+
+  def remove_from_cart
+    id = params[:id].to_i
+    session[:cart].delete(id)
+    redirect_to(request.env['HTTP_REFERER'])
+  end
+
   def bestsellers
     @all = Product.includes(:category).all
     @products = @all.where(:category => { :name => 'Bestseller' }).page(params[:page]).per(20)
