@@ -31,9 +31,17 @@
 						<% if @cart.map {|p| p['id'].to_i}.include? product.id %>
 							<p>This product is in your cart.</p>
 							<p><%= button_to 'Remove from Cart', remove_from_cart_path(product.id), method: :delete %></p>
-							<p class="add"><%= button_to 'Add Another!', add_to_cart_path(product.id), method: :post %></p>
+							<% if session[:custo_id] %>
+								<p class="add"><%= button_to 'Add Another!', add_to_cart_path(product.id), method: :post %></p>
+							<% else %>
+								<p class="add"><%= button_to 'Add Another!', login_path, method: :get %></p>
+							<% end %>
 						<% else %>
-							<p class="add"><%= button_to 'Add to Cart', add_to_cart_path(product.id), method: :post %></p>
+							<% if session[:custo_id] %>
+								<p class="add"><%= button_to 'Add to Cart', add_to_cart_path(product.id), method: :post %></p>
+							<% else %>
+								<p class="add"><%= button_to 'Add to Cart', login_path, method: :get %></p>
+							<% end %>
 						<% end %>
 					</div>
 				</div>
