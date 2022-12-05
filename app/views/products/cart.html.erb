@@ -1,6 +1,5 @@
 <%= render 'components/header', page: 'Cart'  %>
 <div class="container">
-<%= @test %>
   <% if @cart.empty? %>
     <h4 class="title is-5">No products in your cart.</h4>
   <% else %>
@@ -15,9 +14,9 @@
           <% end %>
           <li><%= product.price %></li>
           <li>Current Quantity: <%= item['quantity'] %>
-            <%= form_tag change_quantity_path do %>
-              <%= hidden_field_tag :id, item['id'] %>
-              <%= number_field_tag :quantity %>
+            <%= form_with url: change_quantity_path, local: true, method: :post do %>
+              <%= hidden_field_tag "id", item['id'] %>
+              <%= number_field_tag "quantity", item['quantity'], min: 0 %>
               <%= submit_tag "Change Quantity" %>
             <% end %>
           </li>

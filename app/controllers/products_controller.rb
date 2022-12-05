@@ -31,19 +31,17 @@ class ProductsController < ApplicationController
   end
 
   def change_quantity
-    @test = 'hmmm'
+    id = params[:id].to_i
 
-    flash[:notice] = "Item quantity was successfully changed."
-    @test = 'hmmm'
-    redirect_to(request.env['HTTP_REFERER'])
-  end
+    if params[:quantity].to_i == 0
+      session[:cart].delete(session[:cart].detect{|p| p['id'].to_i == id })
+      flash[:notice] = "The item was removed from the cart."
+    else
+      session[:cart].delete(session[:cart].detect{|p| p['id'].to_i == id })
+      session[:cart].push("id" => id, "quantity" => params[:quantity].to_i)
+      flash[:notice] = "Item quantity was successfully changed."
+    end
 
-  def decrease_quantity
-    quantity = session[:cart].select{|p| p['id'].to_i == id }[0]['quantity']
-    session[:cart].delete(session[:cart].detect{|p| p['id'].to_i == id })
-    session[:cart].push("id" => id, "quantity" => quantity - 1)
-
-    flash[:notice] = "Item quantity successfully decreased."
     redirect_to(request.env['HTTP_REFERER'])
   end
 
