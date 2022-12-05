@@ -3,6 +3,7 @@
   <h5 class="title is-5" id="logout"><%= link_to 'Log Out', logout_path %></h5>
   <h2 class="title is-2">Add Address Information</h2>
   <p>This is required to checkout.</p>
+  <hr style="background-color:white">
   <%= form_for @customer, :url => update_path do |f| %>
     <%= f.collection_select(:province, Province.all, :id, :name, prompt: 'Select a Province') %><br>
     <%= f.label "City" %>

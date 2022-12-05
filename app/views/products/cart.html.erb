@@ -31,7 +31,15 @@
       </div>
     <% end %>
     <hr style="background-color:white">
-    <%= button_to 'Checkout', '#' %>
+    <% if !session[:custo_id] %>
+      <%= button_to 'Checkout', login_path, method: :get %>
+    <% else %>
+      <% if current_custo.province.nil? %>
+        <%= button_to 'Checkout', account_path, method: :get %>
+      <% else %>
+        <%= button_to 'Checkout', checkout_path, method: :post %>
+      <% end %>
+    <% end %>
   <% end %>
 </div>
 <%= render :partial => 'components/footer' %>
