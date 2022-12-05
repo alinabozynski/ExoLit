@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   post 'products/add_to_cart/:id', to: 'products#add_to_cart', as: 'add_to_cart'
   get 'cart', to: 'products#cart'
   delete 'products/remove_from_cart/:id', to: 'products#remove_from_cart', as: 'remove_from_cart'
+  post 'products/change_quantity', to: 'products#change_quantity', as: 'change_quantity'
 
   # Login and Registrations
   get '/sign_up' => 'customers#sign_up'

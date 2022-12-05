@@ -18,13 +18,39 @@ class ProductsController < ApplicationController
 
   def add_to_cart
     id = params[:id].to_i
-    session[:cart] << id
+    if session[:cart].map {|p| p['id'].to_i}.include? id
+      quantity = session[:cart].select{|p| p['id'].to_i == id }[0]['quantity']
+      session[:cart].delete(session[:cart].detect{|p| p['id'].to_i == id })
+      session[:cart].push("id" => id, "quantity" => quantity += 1)
+    else
+      session[:cart].push("id" => id, "quantity" => 1)
+    end
+
+    flash[:notice] = "Item successfully added to cart."
+    redirect_to(request.env['HTTP_REFERER'])
+  end
+
+  def change_quantity
+    @test = 'hmmm'
+
+    flash[:notice] = "Item quantity was successfully changed."
+    @test = 'hmmm'
+    redirect_to(request.env['HTTP_REFERER'])
+  end
+
+  def decrease_quantity
+    quantity = session[:cart].select{|p| p['id'].to_i == id }[0]['quantity']
+    session[:cart].delete(session[:cart].detect{|p| p['id'].to_i == id })
+    session[:cart].push("id" => id, "quantity" => quantity - 1)
+
+    flash[:notice] = "Item quantity successfully decreased."
     redirect_to(request.env['HTTP_REFERER'])
   end
 
   def remove_from_cart
     id = params[:id].to_i
-    session[:cart].delete(id)
+    session[:cart].delete(session[:cart].detect{|p| p['id'].to_i == id })
+    flash[:notice] = "Item successfully removed from cart."
     redirect_to(request.env['HTTP_REFERER'])
   end
 

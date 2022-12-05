@@ -1,9 +1,11 @@
 <%= render 'components/header', page: 'Cart'  %>
 <div class="container">
+<%= @test %>
   <% if @cart.empty? %>
     <h4 class="title is-5">No products in your cart.</h4>
   <% else %>
-    <% @cart.each do |product| %>
+    <% @cart.each do |item| %>
+      <% product = Product.find(item['id']) %>
       <div class="cart-item">
         <ul>
           <li><%= link_to product.name, product_path(product.id) %></li>
@@ -12,6 +14,13 @@
             <li><%= image_tag(url_for(product.image), style: 'height:20vw;width:18vw') %></li>
           <% end %>
           <li><%= product.price %></li>
+          <li>Current Quantity: <%= item['quantity'] %>
+            <%= form_tag change_quantity_path do %>
+              <%= hidden_field_tag :id, item['id'] %>
+              <%= number_field_tag :quantity %>
+              <%= submit_tag "Change Quantity" %>
+            <% end %>
+          </li>
           <li>
             <details>
               <summary>Details</summary>

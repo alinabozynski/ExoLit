@@ -28,7 +28,7 @@
 					<p><b><%= product.price %></b></p>
 					<p><%= truncate(product.details, :length => 100) %></p>
 					<div class="cart-buttons">
-						<% if @cart.include? product %>
+						<% if @cart.map {|p| p['id'].to_i}.include? product.id %>
 							<p>This product is in your cart.</p>
 							<p><%= button_to 'Remove from Cart', remove_from_cart_path(product.id), method: :delete %></p>
 							<p class="add"><%= button_to 'Add Another!', add_to_cart_path(product.id), method: :post %></p>
