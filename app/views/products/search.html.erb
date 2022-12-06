@@ -2,7 +2,7 @@
 <div class="container">
 	<h3 class="title is-3"><%= params['product_name'] == '' && params['product']['category'] == '' ? 'Please ensure that either the search bar is filled out or there is a category selected before searching. Displaying all products.' : 'Search Results' %><%= params['product_name'] != '' ? " for '".concat(params['product_name']).concat("'") : '' %><%= params['product']['category'] != '' ? " in '".concat(params['product']['category']).concat("' ") : '' %></h3>
 </div>
-<section class="is-flex" id="search">
+<section class="is-flex products" id="search">
 		<% @products.each do |product| %>
 			<div class="product">
 				<h4 class="title is-4"><%= product.created_at >= DateTime.now-3.days ? 'NEW! ' : '' %></h4>

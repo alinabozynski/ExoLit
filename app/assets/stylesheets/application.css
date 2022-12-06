@@ -27,6 +27,22 @@ header {
   background-color: #f5c17e;
 }
 
+  #logo {
+    width: fit-content;
+  }
+
+  header > div {
+    display: flex;
+  }
+
+    header > div > form {
+      max-width: 35%;
+    }
+
+    .header-page {
+      margin: 1%;
+    }
+
     header > div > p > a {
       padding: 10px;
     }
@@ -69,9 +85,12 @@ header {
     text-decoration: none;
   }
 
-    .cart-icon {
+    #cart-icon {
       height: fit-content;
+      width: fit-content;
       background-image: linear-gradient(to bottom, #848484, #474747);
+      float: right;
+      margin-top: 4px;
     }
 
     .navbar {
@@ -166,3 +185,33 @@ footer {
     height: 60px;
     padding: 15px;
   }
+
+@media(max-width: 1150px){
+  header > div:first-of-type {
+    display: block;
+  }
+
+  #logo {
+    margin: auto;
+  }
+
+  header > div > form {
+    max-width: 500px;
+    margin: auto;
+  }
+
+  .header-page {
+    display: inline-flex;
+  }
+}
+
+@media(max-width: 650px) {
+  header > div > form {
+    max-width: 95%;
+    margin: auto;
+  }
+
+  .header-page:first-of-type {
+    margin-left: 12%;
+  }
+}
