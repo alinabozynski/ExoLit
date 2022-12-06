@@ -41,18 +41,18 @@
         <li><b>Subtotal:</b> $<%= @prices.sum %>.00</li>
         <% if @province.gst %>
           <% @taxes.push(@prices.sum * @province.gst.to_f) %>
-          <li><b>GST</b> (<%= @province.gst %>)<b>:</b> $<%= number_with_precision(@prices.sum * @province.gst.to_f, :precision => 2) %></li>
+          <li><b>GST</b> (<%= @province.gst * 100 %>%)<b>:</b> $<%= number_with_precision(@prices.sum * @province.gst.to_f, :precision => 2) %></li>
         <% end %>
         <% if @province.pst%>
           <% @taxes.push(@prices.sum * @province.pst.to_f) %>
-          <li><b>PST</b> (<%= @province.pst %>)<b>:</b> $<%= number_with_precision(@prices.sum * @province.pst.to_f, :precision => 2) %></li>
+          <li><b>PST</b> (<%= @province.pst * 100 %>%)<b>:</b> $<%= number_with_precision(@prices.sum * @province.pst.to_f, :precision => 2) %></li>
         <% end %>
         <% if @province.hst%>
           <% @taxes.push(@prices.sum * @province.hst.to_f) %>
-          <li><b>HST</b> (<%= @province.hst %>)<b>:</b> $<%= number_with_precision(@prices.sum * @province.hst.to_f, :precision => 2) %></li>
+          <li><b>HST</b> (<%= @province.hst * 100 %>%)<b>:</b> $<%= number_with_precision(@prices.sum * @province.hst.to_f, :precision => 2) %></li>
         <% end %>
-        <% @total = number_with_precision(@prices.sum + @taxes.sum, :precision => 2) %>
-        <li><b>Total:</b> $<%= @total %></li>
+        <% @amount = (number_with_precision(@prices.sum + @taxes.sum, :precision => 2).to_f * 100).to_i %>
+        <li class="title is-4">Total: $<%= @amount.to_f / 100 %></li>
       </ul>
     </section>
     <hr style="background-color:white">
@@ -64,11 +64,11 @@
           </div>
         <% end %>
 
-        <script src="https://checkout.stripe.com/checkout/js" class="stripe-button"
-          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          data-description="<%= @description %>"
-          data-amount="<%= @amount %>"
-          data-locale="auto"></script>
+        <script src="https://checkout.stripe.com/checkout.js?" class="stripe-button"
+                data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                data-description="<%= @description %>"
+                data-amount="<%= @amount %>"
+                data-locale="auto"></script>
       </article>
     <% end %>
   <% end %>

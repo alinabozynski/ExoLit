@@ -1,21 +1,19 @@
 class ChargesController < ApplicationController
   def new
-    @amount = 500 # $5 in cents
-    @description = 'Description of Charge'
+    @amount = 0
+    @description = 'ExoLit Order'
 
     # Cart
     @prices = []
     @province = Province.where(:id => current_custo.province.id).first
     @taxes = []
-    @total = 0
   end
 
   def add_to_cart
     id = params[:id].to_i
     if session[:cart].map {|p| p['id'].to_i}.include? id
       quantity = session[:cart].select{|p| p['id'].to_i == id }[0]['quantity']
-      session[:cart].delete(session[:cart].detect{|p| p['id'].to_i == id })
-      session[:cart].push("id" => id, "quantity" => quantity += 1)
+      session[:cart].detect{|p| p['id'].to_i == id }['quantity'] = quantity += 1
     else
       session[:cart].push("id" => id, "quantity" => 1)
     end
@@ -31,8 +29,7 @@ class ChargesController < ApplicationController
       session[:cart].delete(session[:cart].detect{|p| p['id'].to_i == id })
       flash[:notice] = "The item was removed from the cart."
     else
-      session[:cart].delete(session[:cart].detect{|p| p['id'].to_i == id })
-      session[:cart].push("id" => id, "quantity" => params[:quantity].to_i)
+      session[:cart].detect{|p| p['id'].to_i == id }['quantity'] = params[:quantity].to_i
       flash[:notice] = "Item quantity was successfully changed."
     end
 
@@ -47,20 +44,20 @@ class ChargesController < ApplicationController
   end
 
   def create
-    amount = 500
+    @amount = amount
 
     @customer = Stripe::Customer.create(email: params[:stripeEmail],
                                         source: params[:stripeToken])
 
     @charge =Stripe::Charge.create(customer: @customer.id,
-                                   amount: amount,
+                                   amount: @amount,
                                    description: 'Rails Stripe Customer',
                                    currency: 'cad')
 
     # link site cutomer id to stripe customer id and:
-    if charge.paid && charge.amount == amount
-      order = Order.create()
-    end
+    # if charge.paid && charge.amount == amount
+    #   order = Order.create()
+    # end
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to new_charge_path

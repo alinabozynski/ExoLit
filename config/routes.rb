@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   # Checkout
-  # get '/checkout', to:
   resources :charges, only: [:new, :create]
 
   # Session Cart
