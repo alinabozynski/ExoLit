@@ -37,7 +37,7 @@
       <% if current_custo.province.nil? %>
         <%= button_to 'Checkout', account_path, method: :get %>
       <% else %>
-        <%= button_to 'Checkout', checkout_path, method: :post %>
+        <%= button_to 'Checkout', checkout_path, method: :get %>
       <% end %>
     <% end %>
   <% end %>
