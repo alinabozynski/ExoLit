@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-# Checkout Paymenr
+# Checkout Payment
 gem 'stripe'
 
 # Pagination

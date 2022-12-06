@@ -1,13 +1,12 @@
 Rails.application.routes.draw do
   # Checkout
-  get 'checkout/create'
-  post 'checkout/create', to: 'checkout#create'
+  resources :charges, only: [:new, :create]
 
   # Session Cart
-  post 'products/add_to_cart/:id', to: 'products#add_to_cart', as: 'add_to_cart'
-  get 'cart', to: 'products#cart'
-  delete 'products/remove_from_cart/:id', to: 'products#remove_from_cart', as: 'remove_from_cart'
-  post 'products/change_quantity', to: 'products#change_quantity', as: 'change_quantity'
+  post 'charges/add_to_cart/:id', to: 'charges#add_to_cart', as: 'add_to_cart'
+  get 'cart', to: 'charges#new'
+  delete 'charges/remove_from_cart/:id', to: 'charges#remove_from_cart', as: 'remove_from_cart'
+  post 'charges/change_quantity', to: 'charges#change_quantity', as: 'change_quantity'
 
   # Login and Registrations
   get '/sign_up' => 'customers#sign_up'
