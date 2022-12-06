@@ -141,6 +141,7 @@ section {
       float: right;
       text-decoration: none;
       padding: 10px;
+      color: #000;
     }
 
       .navbar-item:hover {
@@ -198,10 +199,32 @@ footer {
   header > div > form {
     max-width: 500px;
     margin: auto;
+    padding-top: 2%;
   }
 
   .header-page {
     display: inline-flex;
+  }
+
+  .products, #info, .account, #search {
+    max-width: 90%;
+    margin: auto;
+  }
+
+  .product {
+    min-width: 250px;
+  }
+
+  .page-name {
+    padding-left: 5%;
+  }
+
+  .navbar-item {
+    margin: 1px;
+  }
+
+  footer {
+    margin-top: 30px;
   }
 }
 
