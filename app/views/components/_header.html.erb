@@ -21,15 +21,7 @@
         <% else %>
             <p class="header-item"><a href='/login'>Login</a></p>
         <% end %>
-        <% if !session[:custo_id] %>
-            <h3 class="header-item title is-3 cart-icon"><a href="/login">🛒</a></h3>
-        <% else %>
-            <% if current_custo.province.nil? %>
-                <h3 class="header-item title is-3 cart-icon"><a href="/account">🛒</a></h3>
-            <% else %>
-                <h3 class="header-item title is-3 cart-icon"><a href="/charges/new">🛒</a></h3>
-            <% end %>
-        <% end %>
+        <h3 class="header-item title is-3 cart-icon"><a href="/cart">🛒</a></h3>
     </div>
 
     <div class="navbar">
