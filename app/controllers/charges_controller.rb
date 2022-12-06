@@ -15,6 +15,10 @@ class ChargesController < ApplicationController
                                    description: 'Rails Stripe Customer',
                                    currency: 'cad')
 
+    # link site cutomer id to stripe customer id and:
+    if charge.paid && charge.amount == amount
+      order = Order.create()
+    end
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to new_charge_path

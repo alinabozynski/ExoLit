@@ -1,2 +1,10 @@
-<h1>Charges#create</h1>
-<p>Find me in app/views/charges/create.html.erb</p>
+<%= render 'components/header', page: 'Account Info' %>
+<div class="container">
+  <h2 class="title is-2">Thank You for your order!</h2>
+  <h3 class="title is-3">You paid: <b><%= number_to_currency(@amount / 100.0) %></b>.</h3>
+  <h2 class="title is-2">Stripe Customer</h2>
+  <%= debug @customer %>
+  <h2 class="title is-2">Stripe Charge</h2>
+  <%= debug @charge %>
+</div>
+<%= render :partial => 'components/footer' %>
