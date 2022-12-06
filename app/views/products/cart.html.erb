@@ -8,6 +8,8 @@
       <% @cart.each do |item| %>
         <% product = Product.find(item['id']) %>
         <% @prices.push(product.price[1, product.price.length-1].to_i * item['quantity']) %>
+        <% @product_ids.push(product.id) %>
+
         <div class="cart-item">
           <ul>
             <li><%= link_to product.name, product_path(product.id) %></li>
@@ -52,10 +54,11 @@
           <li><b>HST</b> (<%= @province.hst * 100 %>%)<b>:</b> $<%= number_with_precision(@prices.sum * @province.hst.to_f, :precision => 2) %></li>
         <% end %>
         <% @amount = (number_with_precision(@prices.sum + @taxes.sum, :precision => 2).to_f * 100).to_i %>
-        <li class="title is-4">Total: $<%= @amount.to_f / 100 %></li>
+        <li class="title is-4">Total: $<%= number_with_precision(@amount.to_f / 100, :precision => 2) %></li>
       </ul>
     </section>
     <hr style="background-color:white">
+    <%= button_to 'Checkout', checkout_create_path, params: {ids: @product_ids}, remote: true %>
   <% end %>
 </div>
 <%= render :partial => 'components/footer' %>

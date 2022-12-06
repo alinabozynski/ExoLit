@@ -19,6 +19,7 @@ class ProductsController < ApplicationController
   def cart
     @amount = 0
     @prices = []
+    @product_ids = []
     @province = Province.where(:id => current_custo.province.id).first
     @taxes = []
   end

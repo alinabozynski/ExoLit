@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   # Checkout
-  resources :charges, only: [:new, :create]
+  get 'checkout/create'
+  post 'checkout/create', to: 'checkout#create'
 
   # Session Cart
   post 'products/add_to_cart/:id', to: 'products#add_to_cart', as: 'add_to_cart'
