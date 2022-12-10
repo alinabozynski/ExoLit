@@ -114,6 +114,11 @@ section {
   justify-content: center;
 }
 
+  #message, #sale, #new {
+    color: #a45aff;
+    background-color: none;
+  }
+
   .product {
     min-width: 250px;
   }
