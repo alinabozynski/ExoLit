@@ -25,7 +25,7 @@
       <h2>NEW!</h2>
     <% end %>
     <% if @product.image.attached? %>
-			<p><%= image_tag @product.image.variant(:thumb) %></p>
+			<p><%= image_tag(@product.image, style: 'height:30vw;width:28vw') %></p>
 		<% end %>
       <p>
         <b>
