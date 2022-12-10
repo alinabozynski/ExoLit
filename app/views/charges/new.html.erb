@@ -54,6 +54,7 @@
           <li><b>HST</b> (<%= @province.hst * 100 %>%)<b>:</b> $<%= number_with_precision(@prices.sum * @province.hst.to_f, :precision => 2) %></li>
         <% end %>
         <% @amount = (number_with_precision(@prices.sum + @taxes.sum, :precision => 2).to_f * 100).to_i %>
+        <% session[:amount] = @amount %>
         <li class="title is-4">Total: $<%= number_with_precision(@amount.to_f / 100, :precision => 2) %></li>
       </ul>
     </section>
@@ -68,7 +69,7 @@
       </article>
 
       <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-              data-key="<% Rails.configuration.stripe[:publishable_key] %>"
+              data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
               data-description="<%= @description %>"
               data-amount="<%= @amount %>"
               data-locale="auto"></script>

@@ -1,5 +1,5 @@
 <h1>Thank you for your order!</h1>
-<h3>You paid <strong>$5.00</strong>!</h3>
+<h3>You paid <strong>$<%= session[:amount].to_f / 100 %></strong>!</h3>
 <h4>Stripe Customer</h4>
 <%= debug @customer %>
 <h4>Stripe Charge</h4>
