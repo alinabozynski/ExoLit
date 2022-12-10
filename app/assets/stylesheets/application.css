@@ -114,6 +114,14 @@ section {
   justify-content: center;
 }
 
+  .product {
+    min-width: 250px;
+  }
+
+  .cart-buttons {
+    display: block;
+  }
+
 #search, .products {
   min-height: 550px;
 }

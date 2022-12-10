@@ -7,7 +7,7 @@
   <%= form_for @customer, :url => update_path do |f| %>
     <%= f.collection_select(:province, Province.all, :id, :name, prompt: 'Select a Province') %><br>
     <%= f.label "City" %>
-    <%= f.text_field :city %><br>
+    <%= f.text_field :city, :autofocus => true %><br>
     <%= f.label "Address" %>
     <%= f.text_field :address %><br>
     <%= f.label "Postal Code" %>
