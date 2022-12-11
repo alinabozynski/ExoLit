@@ -19,13 +19,13 @@
   </section>
   <section>
     <% if @product.on_sale == true %>
-      <h2>ON SALE!!!</h2>
+      <h2 id="sale">ON SALE!!!</h2>
     <% end %>
     <% if @product.created_at >= DateTime.now-3.days %>
-      <h2>NEW!</h2>
+      <h2 id="new">NEW!</h2>
     <% end %>
     <% if @product.image.attached? %>
-			<p><%= image_tag @product.image.variant(:thumb) %></p>
+			<p><%= image_tag(@product.image, style: 'height:30vw;width:28vw') %></p>
 		<% end %>
       <p>
         <b>
@@ -36,7 +36,7 @@
       <p><%= @product.details %></p>
       <div class="cart-buttons">
 				<% if @cart.map {|p| p['id'].to_i}.include? @product.id %>
-					<p>This product is in your cart.</p>
+					<p id="message">This product is in your cart.</p>
 					<p><%= button_to 'Remove from Cart', remove_from_cart_path(@product.id), method: :delete %></p>
 					<% if session[:custo_id] %>
 						<p class="add"><%= button_to 'Add Another!', add_to_cart_path(@product.id), method: :post %></p>

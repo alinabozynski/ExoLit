@@ -6,7 +6,7 @@
 	<section class="is-flex">
 			<% @products.each do |product| %>
 				<div class="product">
-					<h4 class="title is-4"><%= product.created_at >= DateTime.now-3.days ? 'NEW! ' : '' %></h4>
+					<h4 class="title is-4" id="new"><%= product.created_at >= DateTime.now-3.days ? 'NEW! ' : '' %></h4>
 					<span class="category">
 						<%= link_to product.category.name,
 							product.category.name == 'Eye Care' ? eye_care_path :
@@ -20,7 +20,7 @@
 						%>
 					</span>
 					<h4 class="name title is-4"><%= link_to product.name, product_path(product.id) %></h4>
-					<h5 class="title is-5"><%= product.on_sale == true ? 'ON SALE!' : '' %></h5>
+					<h5 class="title is-5" id="sale"><%= product.on_sale == true ? 'ON SALE!' : '' %></h5>
 					<% if product.image.attached? %>
 						<p><%= image_tag(url_for(product.image), style: 'height:20vw;width:18vw') %></p>
 					<% end %>
@@ -28,7 +28,7 @@
 					<p><%= truncate(product.details, :length => 100) %></p>
 					<div class="cart-buttons">
 						<% if @cart.map {|p| p['id'].to_i}.include? product.id %>
-							<p>This product is in your cart.</p>
+							<p id="message">This product is in your cart.</p>
 							<p><%= button_to 'Remove from Cart', remove_from_cart_path(product.id), method: :delete %></p>
 							<% if session[:custo_id] %>
 								<p class="add"><%= button_to 'Add Another!', add_to_cart_path(product.id), method: :post %></p>

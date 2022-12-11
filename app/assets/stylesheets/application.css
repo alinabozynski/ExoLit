@@ -127,6 +127,18 @@ section {
   justify-content: center;
 }
 
+  #message, #sale, #new {
+    color: #a45aff;
+  }
+
+  .product {
+    min-width: 250px;
+  }
+
+  .cart-buttons {
+    display: block;
+  }
+
 #search, .products {
   min-height: 550px;
 }
@@ -214,9 +226,13 @@ footer {
     max-width: 500px;
     margin: auto;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     padding-top: 2%;
 >>>>>>> 982ffa5eb48de0f7dee965f93e3bf6a5c074a485
+=======
+    padding-top: 1%;
+>>>>>>> f02bc81dbfa94659cde6f5e35e375a5b43e94684
   }
 
   .header-page {
