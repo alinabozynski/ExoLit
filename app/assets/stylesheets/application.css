@@ -136,7 +136,7 @@ section {
     display: block;
   }
 
-#search, .products {
+#search, .products, .account {
   min-height: 550px;
 }
 
