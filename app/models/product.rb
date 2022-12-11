@@ -1,4 +1,6 @@
 class Product < ApplicationRecord
+  has_and_belongs_to_many :orders
+
   has_one_attached :image do |attachable|
     attachable.variant :thumb, resize_to_fit: [200, 200]
     attachable.variant :showcase, resize_to_fit: [400, 400]
