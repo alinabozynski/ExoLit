@@ -107,6 +107,10 @@ header {
       height: fit-content;
     }
 
+    #all-orders {
+      float: right;
+    }
+
 section {
   display: flex;
   flex-wrap: wrap;

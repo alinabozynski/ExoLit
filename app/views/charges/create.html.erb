@@ -1,7 +1,38 @@
 <%= render 'components/header', page: 'Cart'  %>
-<div class="container">
-  <h1>Thank you for your order, <%= Customer.find(session[:custo_id]).username %>!</h1>
-  <h3>You paid <strong>$<%= number_with_precision(session[:amount].to_f / 100, :precision => 2) %></strong>!</h3>
-  <%= @product_details %>
+<div class="container products">
+  <h5 class="title is-5" id="all-orders"><a href="#">View All Orders</a></h5>
+  <h1 class="title is-1">Thank you for your order, <%= Customer.find(session[:custo_id]).username %>!</h1>
+  <hr style="background-color:white">
+  <table>
+    <tr>
+      <th>Product</th>
+      <th>Quantity</th>
+      <th>Price</th>
+    </tr>
+    <%= @product_details.each do |p| %>
+      <tr>
+        <td><%= p[:name] %></td>
+        <td><%= p[:quantity] %></td>
+        <td><%= p[:price] %></td>
+      </tr>
+    <% end %>
+  </table>
+  <hr style="background-color:white">
+  <section id="order-summary">
+    <h3 class="title is-3">Order Summary</h3>
+    <ul>
+      <li><b>Subtotal:</b> $<%= session[:subtotal] %>.00</li>
+      <% if @gst %>
+        <li><b>GST</b> (<%= @gst * 100 %>%)<b>:</b> $<%= number_with_precision(session[:subtotal] * @gst.to_f, :precision => 2) %></li>
+      <% end %>
+      <% if @pst%>
+        <li><b>PST</b> (<%= @pst * 100 %>%)<b>:</b> $<%= number_with_precision(session[:subtotal] * @pst.to_f, :precision => 2) %></li>
+      <% end %>
+      <% if @hst%>
+        <li><b>HST</b> (<%= @hst * 100 %>%)<b>:</b> $<%= number_with_precision(session[:subtotal] * @hst.to_f, :precision => 2) %></li>
+      <% end %>
+      <li class="title is-4">Total: $<%= number_with_precision(session[:amount].to_f / 100, :precision => 2) %></li>
+    </ul>
+  </section>
 </div>
 <%= render :partial => 'components/footer' %>

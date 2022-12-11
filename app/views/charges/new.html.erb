@@ -38,6 +38,7 @@
     <hr style="background-color:white">
     <section id="cart-summary">
       <h3 class="title is-3">Order Summary</h3>
+      <% session[:subtotal] = @prices.sum %>
       <ul>
         <li><b>Subtotal:</b> $<%= @prices.sum %>.00</li>
         <% if @province.gst %>
