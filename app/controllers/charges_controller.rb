@@ -1,4 +1,8 @@
 class ChargesController < ApplicationController
+  def orders
+    id = Category.select('id').where(:name => params[:product][:category]).first.id
+  end
+
   def new
     @amount = 0
     @prices = []

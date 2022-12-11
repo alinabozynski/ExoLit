@@ -83,9 +83,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_11_043303) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "province_id"
-    t.index ["province_id"], name: "index_customers_on_province_id"
     t.integer "order_id"
     t.index ["order_id"], name: "index_customers_on_order_id"
+    t.index ["province_id"], name: "index_customers_on_province_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -113,8 +113,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_11_043303) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "category_id"
-    t.index ["category_id"], name: "index_products_on_category_id"
     t.integer "order_id"
+    t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["order_id"], name: "index_products_on_order_id"
   end
 
@@ -131,5 +131,4 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_11_043303) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "orders", "products"
 end
