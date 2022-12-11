@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  # Orders
-  get 'orders', to: 'charges#orders'
-
   # Checkout
   resources :charges, only: [:new, :create]
 
