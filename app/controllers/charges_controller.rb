@@ -43,7 +43,7 @@ class ChargesController < ApplicationController
 
   def create
     # Amount in cents
-    amount = session[:amount]
+    amount = session[:amount].dup
 
     @customer = Stripe::Customer.create({
       email: params[:stripeEmail],
@@ -61,8 +61,14 @@ class ChargesController < ApplicationController
       @gst = Customer.find(session[:custo_id]).province.gst.dup
       @pst = Customer.find(session[:custo_id]).province.pst.dup
       @hst = Customer.find(session[:custo_id]).province.hst.dup
-      product_ids = session[:product_ids].uniq
-      @order = Order.new(total: amount, status: 'Paid', gst: @gst, pst: @pst, hst: @hst, stripe_customer_id: @customer.id, stripe_payment_id: @charge.id, product_ids: product_ids, customer_id: session[:custo_id])
+      product_ids = []
+      @product_details = []
+      session[:cart].each do |item|
+        product_ids.push(item['id'])
+        quantity = item['quantity']
+        @product_details.push({name: Product.find(item['id']).name, quantity: quantity, price: Product.find(item['id']).price.dup})
+      end
+      @order = Order.create(product_details: @product_details, total: amount, status: 'Paid', gst: @gst, pst: @pst, hst: @hst, stripe_customer_id: @customer.id, stripe_payment_id: @charge.id, product_ids: product_ids, customer_id: session[:custo_id])
     end
 
   rescue Stripe::CardError => e

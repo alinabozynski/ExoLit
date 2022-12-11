@@ -84,9 +84,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_11_043303) do
     t.datetime "updated_at", null: false
     t.integer "province_id"
     t.index ["province_id"], name: "index_customers_on_province_id"
+    t.integer "order_id"
+    t.index ["order_id"], name: "index_customers_on_order_id"
   end
 
   create_table "orders", force: :cascade do |t|
+    t.string "product_details"
     t.integer "total"
     t.string "status"
     t.decimal "pst"
@@ -96,8 +99,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_11_043303) do
     t.string "stripe_payment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "product_id", null: false
-    t.integer "customer_id", null: false
+    t.integer "product_id"
+    t.integer "customer_id"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
     t.index ["product_id"], name: "index_orders_on_product_id"
   end
@@ -111,6 +114,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_11_043303) do
     t.datetime "updated_at", null: false
     t.integer "category_id"
     t.index ["category_id"], name: "index_products_on_category_id"
+    t.integer "order_id"
+    t.index ["order_id"], name: "index_products_on_order_id"
   end
 
   create_table "provinces", force: :cascade do |t|
@@ -126,6 +131,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_11_043303) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "orders", "customers"
   add_foreign_key "orders", "products"
 end

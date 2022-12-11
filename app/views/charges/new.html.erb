@@ -8,7 +8,6 @@
       <% @cart.each do |item| %>
         <% product = Product.find(item['id']) %>
         <% @prices.push(product.price[1, product.price.length-1].to_i * item['quantity']) %>
-        <% session[:product_ids].push(product.id) %>
 
         <div class="cart-item">
           <ul>
