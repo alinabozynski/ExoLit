@@ -1,0 +1,64 @@
+<%= render 'components/header', page: 'Cart'  %>
+<div class="container products">
+  <% if @cart.empty? %>
+    <h4 class="title is-4">No products in your cart.</h4>
+  <% else %>
+    <section>
+      <h3 class="title is-3">Order Details</h3>
+      <% @cart.each do |item| %>
+        <% product = Product.find(item['id']) %>
+        <% @prices.push(product.price[1, product.price.length-1].to_i * item['quantity']) %>
+        <% @product_ids.push(product.id) %>
+
+        <div class="cart-item">
+          <ul>
+            <li><%= link_to product.name, product_path(product.id) %></li>
+            <li><%= product.on_sale == true ? 'ON SALE' : '' %> in <%= product.category.name.concat('s') %></li>
+            <% if product.image.attached? %>
+              <li><%= image_tag(url_for(product.image), style: 'height:20vw;width:18vw') %></li>
+            <% end %>
+            <li><%= product.price %></li>
+            <li>Current Quantity: <%= item['quantity'] %>
+              <%= form_with url: change_quantity_path, local: true, method: :post do %>
+                <%= hidden_field_tag "id", item['id'] %>
+                <%= number_field_tag "quantity", item['quantity'], min: 0 %>
+                <%= submit_tag "Change Quantity" %>
+              <% end %>
+            </li>
+            <li>
+              <details>
+                <summary>Details</summary>
+                <p><%= product.details %></p>
+              </details>
+            </li>
+            <li><%= button_to 'Remove from Cart', remove_from_cart_path(product.id), method: :delete %></li>
+          </ul>
+        </div>
+      <% end %>
+    </section>
+    <hr style="background-color:white">
+    <section id="cart-summary">
+      <h3 class="title is-3">Order Summary</h3>
+      <ul>
+        <li><b>Subtotal:</b> $<%= @prices.sum %>.00</li>
+        <% if @province.gst %>
+          <% @taxes.push(@prices.sum * @province.gst.to_f) %>
+          <li><b>GST</b> (<%= @province.gst * 100 %>%)<b>:</b> $<%= number_with_precision(@prices.sum * @province.gst.to_f, :precision => 2) %></li>
+        <% end %>
+        <% if @province.pst%>
+          <% @taxes.push(@prices.sum * @province.pst.to_f) %>
+          <li><b>PST</b> (<%= @province.pst * 100 %>%)<b>:</b> $<%= number_with_precision(@prices.sum * @province.pst.to_f, :precision => 2) %></li>
+        <% end %>
+        <% if @province.hst%>
+          <% @taxes.push(@prices.sum * @province.hst.to_f) %>
+          <li><b>HST</b> (<%= @province.hst * 100 %>%)<b>:</b> $<%= number_with_precision(@prices.sum * @province.hst.to_f, :precision => 2) %></li>
+        <% end %>
+        <% @amount = (number_with_precision(@prices.sum + @taxes.sum, :precision => 2).to_f * 100).to_i %>
+        <li class="title is-4">Total: $<%= number_with_precision(@amount.to_f / 100, :precision => 2) %></li>
+      </ul>
+    </section>
+    <hr style="background-color:white">
+    <%= button_to 'Checkout', checkout_create_path, params: {ids: @product_ids}, remote: true %>
+  <% end %>
+</div>
+<%= render :partial => 'components/footer' %>
