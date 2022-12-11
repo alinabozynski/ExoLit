@@ -2,7 +2,6 @@ class ChargesController < ApplicationController
   def new
     @amount = 0
     @prices = []
-    @product_ids = []
     @province = Province.where(:id => current_custo.province.id).first
     @taxes = []
     @description = 'ExoLit Order'
@@ -55,8 +54,16 @@ class ChargesController < ApplicationController
       customer: @customer.id,
       amount: amount,
       description: 'Rails Stripe customer',
-      currency: 'cad',
+      currency: 'usd',
     })
+
+    if @charge.paid && @charge.amount = amount
+      @gst = Customer.find(session[:custo_id]).province.gst.dup
+      @pst = Customer.find(session[:custo_id]).province.pst.dup
+      @hst = Customer.find(session[:custo_id]).province.hst.dup
+      product_ids = session[:product_ids].uniq
+      @order = Order.new(total: amount, status: 'Paid', gst: @gst, pst: @pst, hst: @hst, stripe_customer_id: @customer.id, stripe_payment_id: @charge.id, product_ids: product_ids, customer_id: session[:custo_id])
+    end
 
   rescue Stripe::CardError => e
     flash[:error] = e.message

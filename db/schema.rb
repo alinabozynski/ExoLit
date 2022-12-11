@@ -87,8 +87,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_11_043303) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.decimal "total"
+    t.integer "total"
     t.string "status"
+    t.decimal "pst"
+    t.decimal "gst"
+    t.decimal "hst"
+    t.string "stripe_customer_id"
+    t.string "stripe_payment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "product_id", null: false

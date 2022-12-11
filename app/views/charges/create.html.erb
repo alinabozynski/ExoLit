@@ -1,5 +1,8 @@
 <h1>Thank you for your order!</h1>
 <h3>You paid <strong>$<%= session[:amount].to_f / 100 %></strong>!</h3>
+<%= @order.product_ids %>
+<h4>Order Record</h4>
+<%= debug @order %>
 <h4>Stripe Customer</h4>
 <%= debug @customer %>
 <h4>Stripe Charge</h4>

@@ -18,6 +18,7 @@ class ApplicationController < ActionController::Base
     # Initialize the visit_count on first visit
     session[:visit_count] ||= 0
     session[:cart] ||= []
+    session[:product_ids] ||= []
   end
 
   def increment_visit_count
