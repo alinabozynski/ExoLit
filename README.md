@@ -1,24 +1,20 @@
-# README
+# ExoLit
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Project Details and Gems
+Bundler: 2.3.23
+Ruby version: 2.7.1
+Rails: 7.0.4
+SQLite3: 1.4
+Puma: 5.0
+jbuilder
 
-Things you may want to cover:
+stripe: for checkout payment
+kaminari: for pagination
+image_processing (1.2): for image resizing
 
-* Ruby version
+ActiveAdmin gems:
+sassc-rails
+activeadmin
+devise
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+... see Gemfile for more
