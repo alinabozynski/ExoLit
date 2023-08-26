@@ -1,4 +1,5 @@
 # ExoLit
+Runs on localhost, port 3000
 
 ## Project Details and Gems
 A formal proposal was written as a pitch to a fictional company to be selected to implement an e-commmerce side to their business. The proposal included:
@@ -22,12 +23,21 @@ ActiveAdmin gems:
 * devise
 
 ### Main project features
-* Admin account to add, edit, and delete product listings, add/update images associated with new/existing products, edit contact and about page, create and maintain a list of product categories, and assign categories to new or existing products
-* Search by category
-* Add products to cart (saved in session) and edit quantity or remove items
-* Sign up for a secure account (password are saved hashed and salted) with option to save address details to simplify future order
+* Admin account to add, edit, and delete product listings, add/update images associated with new/existing products, create and maintain a list of product categories, and assign categories to new or existing products
+* Search (can be categorized)
+* Add products to cart (saved in session), where user can edit quantity of or remove items
+* Sign up for a secure account (password are saved hashed and salted) with option to save address details right away to simplify future order
 * Rails validations ensure content added by both administrators and customers is present and correctly formatted
 * Accepts image uploads using Active Storage
+* Proper taxes allocated at checkout as per province
+* Payment acceptance implemented with Stripe
+* Order summary upon checkout
+
+To test checkout with Stripe payment simulation, enter the following details:
+* Email: any (for development purposes, email will not go through here)
+* Card number: 4242 4242 4242 4242
+* Expiry date: any valid future date
+* CVC: any three-digit number
 
 ## To Run this Application
 
@@ -51,5 +61,6 @@ Finally, once you see the "Yay! You're on Rails" screen, update URL to /admin/lo
 
 ## Trouleshooting Help
 
-* IF server is displaying a Webpacker Manifest Missing Entry Error, and you have run `bundle exec rake webpacker:install`, then run `npm install` to ensure all dependencies and gems are installed and try again.
+* If server is displaying a Webpacker Manifest Missing Entry Error, and you have run `bundle exec rake webpacker:install`, then run `npm install` to ensure all dependencies and gems are installed and try again.
 * If there are any issues with with running rails db:migrate or rails db:seed, run `rails db:reset` before starting the server.
+* If you are getting an 'already initialized constant error' with net/protocol, add `gem 'net-http'` to the Gemfile and run `bundle install` again.
